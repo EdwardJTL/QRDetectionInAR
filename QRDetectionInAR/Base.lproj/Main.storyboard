@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L2G-WP-cOr">
-                                <rect key="frame" x="174.5" y="809" width="65" height="53"/>
+                                <rect key="frame" x="174.5" y="759" width="65" height="53"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" buttonSize="large">
                                     <imageReference key="image" image="qrcode.viewfinder" catalog="system"/>
@@ -39,7 +39,7 @@
                             <constraint firstItem="L2G-WP-cOr" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="Vbo-gx-PlK"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="U0K-SW-4ec" secondAttribute="bottom" id="VpT-BR-CcM"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
-                            <constraint firstItem="L2G-WP-cOr" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="ffl-ZE-e2f"/>
+                            <constraint firstItem="L2G-WP-cOr" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" constant="-50" id="ffl-ZE-e2f"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
                         </constraints>
                     </view>

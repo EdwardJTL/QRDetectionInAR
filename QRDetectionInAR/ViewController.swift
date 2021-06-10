@@ -59,7 +59,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         do {
             try imageRequestHandler.perform([request])
         } catch {
-            print("error performing request")
+            presentAlert(title: "Unable to detect QR Code")
         }
     }
 
@@ -67,8 +67,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let visionResults = request.results?.compactMap { $0 as? VNBarcodeObservation }
         if let result = visionResults?.first,
            let payload = result.payloadStringValue {
-            print("barcode says \(payload)")
+            presentAlert(title: "QR Code Detected", message: payload)
+        } else {
+            presentAlert(title: "No QR Code Detected")
         }
+    }
+
+    func presentAlert(title: String, message: String? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .destructive, handler: nil))
+        self.present(alert, animated: true) {}
     }
 
     // MARK: - ARSCNViewDelegate
