@@ -8,11 +8,14 @@
 import UIKit
 import SceneKit
 import ARKit
+import Vision
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    @IBOutlet weak var ScanButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +42,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Pause the view's session
         sceneView.session.pause()
+    }
+
+    // MARK: - Button Action
+    @IBAction func ScanButtonPressed(_ sender: Any) {
+        startQRDetection()
+    }
+
+    // MARK: - QR Detection Methods
+    func startQRDetection() {
+        guard let buffer = sceneView.session.currentFrame?.capturedImage else { return }
+        let request = VNDetectBarcodesRequest(completionHandler: self.onQRDetected(request:error:))
+        request.symbologies = [.qr]
+        request.preferBackgroundProcessing = true
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: buffer, options: [:])
+        do {
+            try imageRequestHandler.perform([request])
+        } catch {
+            print("error performing request")
+        }
+    }
+
+    func onQRDetected(request: VNRequest, error: Error?) {
+        let visionResults = request.results?.compactMap { $0 as? VNBarcodeObservation }
+        if let result = visionResults?.first,
+           let payload = result.payloadStringValue {
+            print("barcode says \(payload)")
+        }
     }
 
     // MARK: - ARSCNViewDelegate
